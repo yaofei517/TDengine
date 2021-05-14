@@ -650,6 +650,10 @@ int32_t tscToSQLCmd(SSqlObj* pSql, struct SSqlInfo* pInfo) {
         }
       }
 
+      if (pTableMetaInfo->pTableMeta != NULL) {
+        pSql->res.precision = tscGetTableInfo(pTableMetaInfo->pTableMeta).precision;
+      }
+
       pCmd->parseFinished = 1;
       return TSDB_CODE_SUCCESS;  // do not build query message here
     }
